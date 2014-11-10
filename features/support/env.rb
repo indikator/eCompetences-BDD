@@ -5,6 +5,11 @@
 # files.
 
 require 'cucumber/rails'
+require 'capybara/cucumber'
+require 'capybara/rspec'
+require 'capybara/mechanize'
+require 'capybara/mechanize/cucumber'
+require 'capybara/poltergeist'
 
 # Capybara defaults to CSS3 selectors rather than XPath.
 # If you'd prefer to use XPath, just uncomment this line and adjust any
@@ -38,13 +43,14 @@ Capybara.register_driver :mechanize do |app|
   Capybara::Mechanize::Driver.new(app)
 end
 
-Before do |scenario|
-  if scenario.source_tag_names.include?('@no_browser') and Capybara.default_driver != :mechanize
-    Capybara.default_driver = :mechanize
-  elsif !scenario.source_tag_names.include?('@no_browser') and Capybara.default_driver != :selenium
-    Capybara.default_driver = :selenium
-  end
+Capybara.register_driver :poltergeist do |app|
+  Capybara::Poltergeist::Driver.new(app,
+    :phantomjs_options => ["--cookies-file=cookies.txt"]
+  )
 end
+
+Before('@poltergeist') { Capybara.default_driver = :poltergeist }
+Before('@selenium') { Capybara.default_driver = :selenium }
 
 ActionController::Base.allow_rescue = false
 
@@ -77,3 +83,9 @@ end
 # See https://github.com/cucumber/cucumber-rails/blob/master/features/choose_javascript_database_strategy.feature
 Cucumber::Rails::Database.javascript_strategy = :truncation
 
+class ApplicationController < ActionController::Base
+  prepend_before_filter :stub_current_user
+  def stub_current_user
+    session[:user_id] = cookies[:stub_user_id] if cookies[:stub_user_id]
+  end
+end

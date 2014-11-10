@@ -40,7 +40,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'byebug', group: [:development, :test] # for Ruby >= 2.X
 
 # Use HAML as hypentext lang
-gem 'haml'
+gem 'haml-rails'
 
 # Use Twitter Bootstrap framework
 gem 'bootstrap-sass'
@@ -55,4 +55,5 @@ group :development, :test do
   gem 'capybara'
   gem 'capybara-mechanize'
   gem 'selenium-webdriver'
+  gem 'poltergeist'
 end

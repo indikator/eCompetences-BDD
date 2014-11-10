@@ -1,0 +1,2 @@
+[General]
+cookies="@Variant(\0\0\0\x7f\0\0\0\x16QList<QNetworkCookie>\0\0\0\0\x1\0\0\0\x2\0\0\0)stub_user_id=1; domain=.127.0.0.1; path=/\0\0\x1\0_eCompetences-BDD_session=MmhBeDRabGtQdDBaRzVEcmNNMlZLUnhHWXpQcVcvbzMvOHJKZk5VUnNRREV1UVNkc0w0K3NuN01aWmRpeEsrUW1TWVJKcjlmU1FZQ3RRZFlUSmxmTkE9PS0tRXNadUI3TlhvTmw3aXFzaDllRzVKZz09--5cbf0a76ef9db85e5b4b444fd465e8040b2307e2; HttpOnly; domain=127.0.0.1; path=/)"
