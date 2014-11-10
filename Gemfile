@@ -27,7 +27,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt', '~> 3.1.7'
 
 # Use unicorn as the app server
 # gem 'unicorn'
@@ -36,5 +36,23 @@ gem 'spring',        group: :development
 # gem 'capistrano-rails', group: :development
 
 # Use debugger
-# gem 'debugger', group: [:development, :test]
+# gem 'debugger', group: [:development, :test] # only for Ruby 1.9.2 & 1.9.3
+gem 'byebug', group: [:development, :test] # for Ruby >= 2.X
 
+# Use HAML as hypentext lang
+gem 'haml'
+
+# Use Twitter Bootstrap framework
+gem 'bootstrap-sass'
+
+# Use jQuery-UI framework
+gem 'jquery-ui-rails'
+
+group :development, :test do
+  gem 'cucumber-rails', require: false
+  gem 'database_cleaner'
+  gem 'rspec-rails'
+  gem 'capybara'
+  gem 'capybara-mechanize'
+  gem 'selenium-webdriver'
+end
