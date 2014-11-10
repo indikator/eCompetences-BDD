@@ -1,8 +1,3 @@
-def session(sym = nil)
-  # p Capybara.current_session.driver
-  # sym ? Capybara.current_session.driver.cookies[sym.to_s].value : Capybara.current_session.driver.cookies
-end
-
 def current_user
   $current_user
   # p Capybara.current_session.driver.cookies
@@ -10,7 +5,7 @@ def current_user
 end
 
 Допустим(/^Я \- гость$/) do
-  expect(page.driver.cookies["stub_user_id"].value).to be_nil
+  expect(current_user).to be_falsey
 end
 
 Когда(/^Я захожу на главную страницу системы$/) do
@@ -33,7 +28,7 @@ end
       first_name: "Test",
       last_name: "User"
   )
-  page.driver.set_cookie(:stub_user_id, user.id)
+  # page.driver.set_cookie(:stub_user_id, user.id)
   $current_user = user.id
   expect(user.groups.collect {|group| group.name}).not_to be_include(ecompetences_users_group)
 end
