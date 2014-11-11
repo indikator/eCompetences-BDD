@@ -23,7 +23,7 @@
       <%= link_to "e-Competences", root_url, class: "navbar-brand" %>
     </div>
     <div id="navbar-collapse" class="collapse navbar-collapse">
-      <%# = render "layouts/user" if current_user %>
+      <%= render "layouts/user" if current_user && current_user.tipycal? %>
       <%= link_to "Sign In", signin_path, class: "btn btn-default navbar-btn pull-right", type: "button" unless current_user %>
       <%= link_to "Log Out", logout_path, class: "btn btn-danger navbar-btn pull-right", type: "button" if current_user %>
     </div>
